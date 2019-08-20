@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/imgareaselect-default.css" />
+<script type="text/javascript" src="/static/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery.imgareaselect.pack.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <img id="image_crop" src="/uploads/d1.png" alt= "pan card image ">
+      <!-- width= "900" height="300"> -->
+    </div>
+  </body>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+      var ias = $('#image_crop').imgAreaSelect({
+          handles: true,
+          onSelectEnd: confirmFunction,
+          instance: true
+      });
+
+
+    function confirmFunction(img, selection) {
+            var r =confirm('width: ' + selection.width + '; height: ' + selection.height + '; x: ' + selection.x1 + '; y: ' + selection.y1+ '; x: ' + selection.x2 + '; y: ' + selection.y2);
+            if (r == true) {
+              fetchResult_OCR(selection.x1,selection.x2,selection.y1,selection.y2)
+            } else {
+              console.log("cancel");
+              ias.cancelSelection();
+            }
+        }
+
+  });
+
+       function fetchResult_OCR(x1,x2,y1,y2) {
+          const URL = `/ocr/d1?x1=${x1}&x2=${x2}&y1=${y1}&y2=${y2}`;
+          const fetchResult = fetch(URL)
+          .then(res => res.json())
+          .then(json => {
+            console.log(json)
+          })
+          .catch(console.error)
+        }
+
+  </script>
+</html>

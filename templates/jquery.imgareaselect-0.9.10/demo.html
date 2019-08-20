@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" />
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <img id="image_crop" src="../../static/cheque_demo.jpg" alt= "pan card image " width= "900" height="300">
+    </div>
+  </body>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+      $('#image_crop').imgAreaSelect({
+          handles: true,
+          onSelectEnd: someFunction
+      });
+  });
+
+  function someFunction(img, selection) {
+          confirm('width: ' + selection.width + '; height: ' + selection.height + '; x: ' + selection.x1 + '; y: ' + selection.y1+ '; x: ' + selection.x2 + '; y: ' + selection.y2);
+      }
+  </script>
+</html>

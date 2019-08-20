@@ -1,0 +1,91 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>CodePen - horizontal split screen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+
+<style>
+    /* body {
+      display: table;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    } */
+
+    button{
+      float:left;
+      padding:8px 12px;
+      margin:80px 0 0;
+      margin-left: 300px;
+      font-family:'Montserrat',sans-serif;
+      border:2px solid #78788c;
+      background:0;color:#5a5a6e;
+      cursor:pointer;transition:all .3s}
+
+    button:hover{background:#78788c;color:#fff}
+
+    h2{margin:auto;padding-bottom:10px;width:180px;color:#78788c;border-bottom:3px solid #78788c; text-align: center;}
+    p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a; text-align: center;}
+
+
+     #btn {
+       background-color: #94cae3;
+       /* padding: 10px 10px; */
+       height: 40px;
+       width: 90px;
+       padding: 10px;
+       margin: 20px auto;
+       border: 0;
+       border-radius: 3px;
+     }
+</style>
+<script>
+    window.console = window.console || function(t) {};
+</script>
+<script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+</script>
+</head>
+<body style="overflow: hidden;">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="position: fixed; top: 0; width: 100%; overflow: hidden;">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Document Analysis</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/aadhar_demo">Aadhaar Demo</a></li>
+      <li><a href="/pan_demo">Pan Demo</a></li>
+      <li><a href="#">Cheque Demo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<table style="width:100%">
+  <tbody>
+  <tr><td align="center">
+      <div>
+      	<img id="image_crop" src="../static/cheque_demo.jpg" alt= "pan card image " width= "900" height="300">
+      </div>
+  </td></tr>
+</tbody>
+</table>
+</body>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#image_crop').imgAreaSelect({
+        handles: true,
+        onSelectEnd: someFunction
+    });
+});
+</script>
+
+</html>

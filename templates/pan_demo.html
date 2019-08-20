@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+
+    .split {
+      height: 90%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 50px;
+      top:auto;
+    }
+
+    .left {
+      overflow: hidden;
+      left: 0;
+    }
+
+    .right {
+      overflow: hidden;
+      right: 0;
+    }
+
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+
+    	body {
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        background: #fff;
+        min-height: 100vh;
+        background: linear-gradient(to left, #f5f5f5 50%, #fff 50%);
+        font-family: 'Raleway', sans-serif;
+    	}
+
+    	#btn {
+        background-color: #94cae3;
+        /* padding: 10px 10px; */
+        height: 40px;
+        width: 90px;
+        padding: 10px;
+        margin: 20px auto;
+        border: 0;
+        border-radius: 3px;
+      }
+
+    	#fimg {
+    		display: inline-block;
+    		/* margin-left: 150px;
+    		margin: auto auto auto 0%; */
+    	}
+
+    	button{
+    		float:left;
+    		padding:8px 12px;
+    		margin:80px 0 0;
+    		margin-left: 300px;
+    		font-family:'Montserrat',sans-serif;
+    		border:2px solid #78788c;
+    		background:0;color:#5a5a6e;
+    		cursor:pointer;transition:all .3s}
+
+    	button:hover{background:#78788c;color:#fff}
+
+    	.form{
+    		float:right;
+    		margin-top: 0px;
+    		width:450px; height:580px;
+    		background:#e6e6e6;
+    		border-radius:8px;
+    		/* box-shadow:0 0 40px -10px #000; */
+        box-shadow:10px 10px 30px -10px #000;
+        margin:calc(50vh - 220px) auto;
+    		padding:20px 30px; max-width:calc(100vw - 40px);
+    		box-sizing:border-box;
+    		font-family:'Montserrat',sans-serif;position:relative
+    		}
+    	h2{margin:auto;padding-bottom:10px;width:180px;color:#78788c;border-bottom:3px solid #78788c; text-align: center;}
+    	.ans{width:100%;padding:10px;
+    		  box-sizing:border-box;
+    		  background:none;outline:none;resize:none;
+    		  border:0;font-family:'Montserrat',sans-serif;transition:all .3s;text-align: center;font-size:20px;
+    		  border-bottom:2px solid #bebed2}
+    	.ans:focus{border-bottom:2px solid #78788c}
+    	p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a; text-align: center;}
+
+    	#ndiv{ float: right;
+    		   vertical-align: center;
+    	 }
+
+    	/* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+      .cancelbtn, .signupbtn {
+         width: 100%;
+      }
+    }
+
+</style>
+
+<head>
+	<title>
+		Document Analysis - Demo
+	</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid" style="position: fixed; top: 0; width: 100%; overflow: hidden;">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Document Analysis</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/aadhar_demo">Aadhaar Demo</a></li>
+      <li class="#"><a href="/pan_demo">Pan Demo</a></li>
+      <li><a href="/cheque_demo">Cheque Demo</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- Left Card -->
+<div class="split left">
+  <div class="centered">
+	<div id = "fimg">
+		<img src="static/pan_demo.jpg" alt= "pan card image " width= "400" height="300">
+	</div>
+</div></div>
+
+<!-- Right Card -->
+<div class="split right">
+  <div class="centered">
+	<div id="ndiv">
+		<!-- <th style="padding-left: 350px;"> -->
+		  <form class="form">
+		  <h2>Results</h2>
+			  <p type="Pan Number:"><input class="ans" id="pan" value="AJNPV0094M"></input class="ans"></p>
+			  <p type="Name:"><input class="ans" id="name" value="SRINIVAS VASAM"></input class="ans"></p>
+			  <p type="Father's Name:"><input class="ans" id="fname" value="NARSAIAH VASAM"></input class="ans"></p>
+			  <p type="Date of Birth:"><input class="ans" id="dob" value="09/09/1984"></input class="ans"></p>
+			<input id = "btn" type="submit" value="Print" style = "font-size:16px; text-decoration: none; cursor: pointer;">
+			</form>
+	</div>
+</div></div>
+
+</body>
+</html>

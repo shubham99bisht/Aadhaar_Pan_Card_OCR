@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/imgareaselect-default.css" />
+    <script type="text/javascript" src="/static/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/static/scripts/jquery.imgareaselect.pack.js"></script>
+    <title>Document Analysis - OCR</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>    	#btn {
+            background-color: #94cae3;
+            /* padding: 10px 10px; */
+            height: 40px;
+            width: 120px;
+            border: 0;
+            border-radius: 3px;
+            position: fixed;
+          }
+
+    </style>
+  </head>
+
+  <body>
+
+  <form action="/">
+    <input id = "btn" type="submit" value="Home Page" style = "font-size:16px; text-decoration: none; cursor: pointer;">
+  </form>
+
+<br><br><br><br>
+
+    <div align="center">
+      <img id="image_crop" src="{{url_for('crop_image', filename=image_name)}}" alt= "pan card image ">
+      <!-- width= "900" height="300"> -->
+    </div>
+    <br>
+
+    <div align="center" >
+      <select id="choice" height="50px;" width="200px;" >
+        <option value="1" selected="selected">Name</option>
+        <option value="2">Amount in word</option>
+        <option value="3">Amount in digits</option>
+        <option value="4">Dates</option>
+        <option value="5">Number</option>
+        <option value="6">Text</option>
+        <option value="7">Pan</option>
+        <option value="8">Aadhaar</option>
+        <option value="9">Year</option>
+        <option value="10">MICR</option>
+      </select>
+    </div>
+
+    <br><br>
+    <div>
+      <p id="label" align="center"></p>
+    </div>
+
+  </body>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+      var ias = $('#image_crop').imgAreaSelect({
+          handles: true,
+          onSelectEnd: confirmFunction,
+          instance: true
+      });
+
+
+    function confirmFunction(img, selection) {
+            var r =confirm('width: ' + selection.width + '; height: ' + selection.height + '; x: ' + selection.x1 + '; y: ' + selection.y1+ '; x: ' + selection.x2 + '; y: ' + selection.y2);
+            if (r == true) {
+              fetchResult_OCR(selection.x1,selection.x2,selection.y1,selection.y2)
+            } else {
+              console.log("cancel");
+              ias.cancelSelection();
+            }
+        }
+
+  });
+
+       function fetchResult_OCR(x1,x2,y1,y2) {
+         var e = document.getElementById("choice");
+         var val = e.options[e.selectedIndex].value;
+         console.log(val)
+          const URL = `/ocr/{{image_name}}?x1=${x1}&x2=${x2}&y1=${y1}&y2=${y2}&type=${val}`;
+          const fetchResult = fetch(URL)
+          .then(res => res.json())
+          .then(json => {
+            console.log(json["text"])
+            document.getElementById("label").innerHTML = "Detected Text: "+json.text;
+          })
+          .catch(console.error)
+        }
+
+  </script>
+</html>
